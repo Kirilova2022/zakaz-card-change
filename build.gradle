@@ -4,7 +4,10 @@ plugins {
 
 group 'ru.netology'
 version '1.0-SNAPSHOT'
+
 sourceCompatibility = 11
+
+//Кодировка файлов (если используется русский язык в файлах)
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
@@ -13,11 +16,13 @@ repositories {
 }
 
 dependencies {
-    testImplementation group: 'org.testng', name: 'testng', version: '7.6.0'
-    implementation group: 'com.codeborne', name: 'selenide', version: '6.5.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+    testImplementation 'com.codeborne:selenide:6.2.0'
 }
 
 test {
-    useTestNG()
-    systemProperty('selenide.headless', System.getProperty('selenide.headless'))
+    useJUnitPlatform()
+    //В тестах, при вызове `gradlew test -Dselenide.headless=true` будет передаватся этот параметр
+    // в JVM (где его подтянет Selenide)
+    systemProperty 'selenide.headless', System.getProperty('selenide.headless')
 }
