@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 import static com.codeborne.selenide.Selenide.*;
 
 
-public class CardDeliveryTest {
+public class CallBackTest {
     @Test   // №1
     public void shouldSuccessfulFormSubmission() {
         open("http://localhost:9999");
